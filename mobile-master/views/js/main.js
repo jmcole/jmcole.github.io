@@ -449,9 +449,9 @@ var resizePizzas = function(size) {
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
-    var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[0], size);
-    var newwidth = (document.querySelectorAll(".randomPizzaContainer")[0].offsetWidth + dx) + 'px';
-    var length = (document.querySelectorAll(".randomPizzaContainer").length);
+    var dx = determineDx(document.getElementsByClassName(".randomPizzaContainer")[0], size);
+    var newwidth = (document.getElementsByClassName(".randomPizzaContainer")[0].offsetWidth + dx) + 'px';
+    var length = (document.getElementsByClassName(".randomPizzaContainer").length);
     for (var i = 0; i < length; i++) {
       document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
     }
