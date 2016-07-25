@@ -518,8 +518,8 @@ function updatePositions() {
 
   for (var i = 0; i < items.length; i++) {
     var phase = Math.sin(scrollTop + i % 5);
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
-    //items[i].style.transform = 'translateX(' + 400 * phase + 'px)';
+    //items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    items[i].style.transform = 'translateX(' + 500 * phase + 'px)';
   }
 
 
@@ -537,6 +537,9 @@ function updatePositions() {
 
 // runs updatePositions on scroll
 //window.addEventListener('scroll', updatePositions);
+
+//Optimized from //https://developer.mozilla.org/en-US/docs/Web/Events/scroll
+//http://www.html5rocks.com/en/tutorials/speed/animations/
 
 var last_known_scroll_position = 0;
 var ticking = false;
