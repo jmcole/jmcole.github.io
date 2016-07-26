@@ -446,13 +446,18 @@ var resizePizzas = function(size) {
 
     return dx;
   }
-
+/****************************************************************************
+                                  Optimization
+Removed variables outside of For loop and used getElementsbClassName instead of QuerySelector
+******************************************************************************/
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
-    for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
-      var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
-      var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
-      document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
+    var pizzaCon = document.getElementsByClassName("randomPizzaContainer");
+    var dx = determineDx(pizzaCon[0], size);
+    var newwidth = (pizzaCon[0].offsetWidth + dx) + 'px';
+    var length = pizzaCon.length;
+    for (var i = 0; i < documentgetElementsByClassName("randomPizzaContainer").length; i++) {
+      document.getElementsByClassName("randomPizzaContainer")[i].style.width = newwidth;
     }
   }
 
