@@ -456,7 +456,7 @@ Removed variables outside of For loop and used getElementsbClassName instead of 
     var dx = determineDx(pizzaCon[0], size);
     var newwidth = (pizzaCon[0].offsetWidth + dx) + 'px';
     var length = pizzaCon.length;
-    for (var i = 0; i < documentgetElementsByClassName("randomPizzaContainer").length; i++) {
+    for (var i = 0; i < length; i++) {
       document.getElementsByClassName("randomPizzaContainer")[i].style.width = newwidth;
     }
   }
