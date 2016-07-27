@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="css/bootstrap-grid.css">
 </head>
 <body style= "background: black; font-family: "Trebuchet MS", Helvetica, sans-serif;">
-  <div class="container">
+  <div class="container" style="background-color: rgba(240, 60, 60, 0.8);">
     <div id="header" class="row">
       <div class="col-md-6">
         <div class="row">
@@ -14,17 +14,17 @@
             <h1>Cam's Pizzeria</h1>
             <div class="row">
               <div id="menu" class="col-md-12">
-                <form action="#randomPizzas">
-                  <input type="submit" value="Menu">
+                <form style= "display: inline-block;" action="#randomPizzas">
+                  <input style =" background: grey; font-size: 18px;" type="submit" value="Menu">
                 </form>
-                <form action="#ingredients">
-                  <input type="submit" value="Our Ingredients">
+                <form style= "display: inline-block;" action="#ingredients">
+                  <input style =" background: grey; font-size: 18px;" type="submit" value="Our Ingredients">
                 </form>
-                <form action="#locations">
-                  <input type="submit" value="Locations">
+                <form style= "display: inline-block;" action="#locations">
+                  <input style =" background: grey; font-size: 18px;" type="submit" value="Locations">
                 </form>
-                <form action="#" onsubmit="alert('Thanks for clicking! This button doesn\'t do anything because this is a fake pizzeria :\)')">
-                  <input type="submit" value="Contact Us">
+                <form style= "display: inline-block;" action="#" onsubmit="alert('Thanks for clicking! This button doesn\'t do anything because this is a fake pizzeria :\)')">
+                  <input style =" background: grey; font-size: 18px;" type="submit" value="Contact Us">
                 </form>
               </div>
             </div>
@@ -51,8 +51,8 @@
         </div>
         <div class="row">
           <div class="col-md-6 col-md-push-3">
-            <form action="#randomPizzas">
-              <input type="submit" value="Pick a Pizza Now!">
+            <form style= "display: inline-block;" action="#randomPizzas">
+              <input style =" background: grey; font-size: 18px;" type="submit" value="Pick a Pizza Now!">
             </form>
           </div>
         </div>
@@ -61,7 +61,7 @@
     <div id="ingredients" class="row">
       <div class="col-md-8 col-md-push-2">
         <div class="row">
-          <div class="col-md-12 centered">
+          <div class="col-md-12" style="text-align: center">
             <h2>Ingredients!</h2>
           </div>
         </div>
@@ -98,9 +98,9 @@
           <div class="col-md-12">
             <em>What size pizza would you like? Use the slider below to change pizza sizes.</em>
           </div>
-          <div id="pizzaSize" class="col-md-6">Medium</div>
+          <div id="pizzaSize" class="col-md-6" style ="font-weight: 800;">Medium</div>
           <div class="col-md-12">
-            <input id="sizeSlider" type="range" min="1" max="3" value="2" step="1" onchange="resizePizzas(this.value)"></input>
+            <input style =" background: grey; font-size: 18px;" id="sizeSlider" type="range" min="1" max="3" value="2" step="1" onchange="resizePizzas(this.value)"></input>
           </div>
         </div>
         <div id="randomPizzas" class="row">
