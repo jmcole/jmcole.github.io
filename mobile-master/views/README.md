@@ -48,3 +48,15 @@ main.js:504 Average scripting time to generate last 10 frames: 2.741500000000087
 main.js:504 Average scripting time to generate last 10 frames: 2.5340000000007423ms
 main.js:504 Average scripting time to generate last 10 frames: 2.560499999999229ms
 main.js:504 Average scripting time to generate last 10 frames: 2.8020000000007714ms
+
+4. Optimized images
+Reduced pizza.png
+Reduced pizzeria.jpg
+
+Found an error in function updatePosistions. I had created a new variable scrollTop and moved it outside the loop, but I did not remove the old document.body.scrollTop from within the For loop.this improved results greatly.
+
+Time to generate pizzas on load: 26.375ms
+Average scripting time to generate last 10 frames: 4.223500000000001ms
+Average scripting time to generate last 10 frames: 0.4884999999998854ms
+Average scripting time to generate last 10 frames: 0.5265000000003056ms
+Average scripting time to generate last 10 frames: 0.3219999999999345ms
