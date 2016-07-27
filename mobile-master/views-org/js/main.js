@@ -511,11 +511,11 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
-  var scrollTop = document.body.scrollTop / 1250;//Move outside For loop
+  var scrollTop = document.body.scrollTop;//Move outside For loop
   var items = document.getElementsByClassName('mover');// Changed to more effecient getElementsByClassName
 
   for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop) + (i % 5));
+    var phase = Math.sin((scrollTop) + (i % 5));
     var pizzas = items[i].basicLeft + 100 * phase + 'px';// created seperate variable due to high px values
     items[i].style.transform = 'translateX(' + pizzas + ')';//Changed to transform
   }
