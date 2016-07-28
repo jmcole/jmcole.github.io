@@ -7,27 +7,27 @@
   -box-sizing: border-box;
 }
 
-/**body {
+body {
   font-family: "Trebuchet MS", Helvetica, sans-serif;
   background: black;
-}**/
+}
 
-/*input {
+input {
   background: grey;
   font-size: 18px;
 }
 
-/*form {
+form {
   display: inline-block;
-}*/
-/*
+}
+
 .centered {
   text-align: center;
 }
 
-/*#pizzaSize {
+#pizzaSize {
   font-weight: 800;
-}*/
+}
 
 .mover {
   position: fixed;
@@ -49,8 +49,7 @@
   display: table;
   clear:both;
 }
-/*
+
  .container {
   background-color: rgba(240, 60, 60, 0.8);
 }
-*/
