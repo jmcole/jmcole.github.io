@@ -74,3 +74,36 @@ Time to resize pizzas: 1.0899999999965075ms
 main.min.js:1 Time to resize pizzas: 0.8500000000058208ms
 main.min.js:1 Time to resize pizzas: 0.9700000000011642ms
 main.min.js:1 Time to resize pizzas: 0.9799999999959255ms
+
+6. Grunt
+
+module.exports = function(grunt) {
+
+
+grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
+
+    critical: {
+        test: {
+            options: {
+                base: './',
+                css: [
+                    'css/style.min.css',
+                    'css/bootstrap-grid.min.css'
+                ],
+                width: 320,
+                height: 70
+            },
+            src: 'pizza.html',
+            dest: 'pizza2.html'
+        }
+    }
+
+
+});
+
+grunt.loadNpmTasks('grunt-critical');
+
+grunt.registerTask('default', ['critical']);
+
+}
