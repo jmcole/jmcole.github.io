@@ -60,3 +60,17 @@ Average scripting time to generate last 10 frames: 4.223500000000001ms
 Average scripting time to generate last 10 frames: 0.4884999999998854ms
 Average scripting time to generate last 10 frames: 0.5265000000003056ms
 Average scripting time to generate last 10 frames: 0.3219999999999345ms
+
+5.
+
+Time to generate pizzas on load: 19.42999999999998ms
+move.min.js:1 Average scripting time to generate last 10 frames: 0.7000000000004235ms
+move.min.js:1 Average scripting time to generate last 10 frames: 0.269999999999709ms
+move.min.js:1 Average scripting time to generate last 10 frames: 0.32150000000037837ms
+move.min.js:1 Average scripting time to generate last 10 frames: 0.4450000000000728ms
+move.min.js:1 Average scripting time to generate last 10 frames: 0.41749999999992726ms
+
+Time to resize pizzas: 1.0899999999965075ms
+main.min.js:1 Time to resize pizzas: 0.8500000000058208ms
+main.min.js:1 Time to resize pizzas: 0.9700000000011642ms
+main.min.js:1 Time to resize pizzas: 0.9799999999959255ms
