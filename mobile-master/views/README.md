@@ -43,11 +43,11 @@ Moved pizzasDiv outside of For loop
 Changed pizza value from 200 to 36
 
 Time to generate pizzas on load: 29.49000000000001ms
-main.js:504 Average scripting time to generate last 10 frames: 8.258499999998838ms
-main.js:504 Average scripting time to generate last 10 frames: 2.7415000000000873ms
-main.js:504 Average scripting time to generate last 10 frames: 2.5340000000007423ms
-main.js:504 Average scripting time to generate last 10 frames: 2.560499999999229ms
-main.js:504 Average scripting time to generate last 10 frames: 2.8020000000007714ms
+Average scripting time to generate last 10 frames: 8.258499999998838ms
+Average scripting time to generate last 10 frames: 2.7415000000000873ms
+Average scripting time to generate last 10 frames: 2.5340000000007423ms
+Average scripting time to generate last 10 frames: 2.560499999999229ms
+Average scripting time to generate last 10 frames: 2.8020000000007714ms
 
 4. Optimized images
 Reduced pizza.png
