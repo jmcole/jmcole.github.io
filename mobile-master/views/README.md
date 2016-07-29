@@ -77,6 +77,28 @@ main.min.js:1 Time to resize pizzas: 0.9799999999959255ms
 
 6. Grunt
 
+JS
+
+module.exports = function(grunt) {
+
+
+grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
+
+    uglify: {
+        build: {
+            src: 'js/main.js',
+            dest: 'js/main.min.js',
+        }
+    }
+
+});
+
+grunt.loadNpmTasks('grunt-contrib-uglify');
+
+grunt.registerTask('default', ['uglify']);
+
+}
 module.exports = function(grunt) {
 
 
@@ -105,5 +127,35 @@ grunt.initConfig({
 grunt.loadNpmTasks('grunt-critical');
 
 grunt.registerTask('default', ['critical']);
+
+}
+
+CSS
+
+grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
+
+    critical: {
+        test: {
+            options: {
+                base: './',
+                css: [
+                    'css/style.min.css',
+                    'css/bootstrap-grid.css'
+                ],
+                width: 320,
+                height: 70
+            },
+            src: 'test/fixture/index.html',
+            dest: 'test/generated/critical.css'
+        }
+    }
+
+
+});
+
+grunt.loadNpmTasks('grunt-critical');
+
+grunt.registerTask('default', ['cssmin']);
 
 }
