@@ -221,7 +221,7 @@ grunt.registerTask('default', ['critical']);
 
 ```
 
-#CSS-Minification
+# CSS-Minification
 
 After optimizing the CSS for above the fold content, I also wanted to minify the CSS. To do this, I used [cssmin](https://www.npmjs.com/package/grunt-contrib-cssmin)
 
@@ -252,3 +252,37 @@ grunt.registerTask('default', ['cssmin']);
 
 }
 ```
+
+# HTML Minification
+
+I minified the HMTL using [hmtlmin](https://www.npmjs.com/package/grunt-contrib-htmlmin)with the following configuration file.
+
+```
+module.exports = function(grunt) {
+
+
+grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
+
+     htmlmin: {
+       dist: {
+         options: {
+           removeComments: true,
+           collapseWhitespace: true
+         },
+         files: {
+           'dist/pizza.html': 'pizza.html'
+         }
+       }
+     },
+});
+
+grunt.loadNpmTasks('grunt-contrib-htmlmin');
+
+grunt.registerTask('default', ['htmlmin']);
+
+}
+```
+
+In addition, I also inlined some of the javscript in order to improve the website above the fold download time.
+
