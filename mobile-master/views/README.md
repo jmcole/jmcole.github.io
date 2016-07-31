@@ -321,3 +321,5 @@ var cols = 8;
   }
   updatePositions();
 '''
+
+Also corrected index.html so that correct image and links display.
