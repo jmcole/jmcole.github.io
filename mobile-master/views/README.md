@@ -90,6 +90,8 @@ function updatePositions() {
     items[i].style.transform = 'translateX(' + pizzas + ')';
   }
 
+```
+
 This function could still be improved by moving the phase calculation outside of the loop, however these change significantly improved performance.
 
 
@@ -124,7 +126,7 @@ Changed pizza value from 200 to 20
 ## 4. Optimized images
 Reduced pizza.png and reduced pizzeria.jpg by determing the maximun display value using GoogleDev Tools. I then resized and reduced the size of the images with the online [Kraken](https://kraken.io/) tool.
 
-Found an error in function updatePosistions. I had created a new variable scrollTop and moved it outside the loop, but I did not remove the old document.body.scrollTop from within the For loop.This improved results greatly.
+Found an error in function updatePosistions. I had created a new variable scrollTop and moved it outside the loop, but I did not remove the old document.body.scrollTop from within the For loop.This improved results greatly. The website is now hitting 60fps.
 
 - Time to generate pizzas on load: 26.375ms
 - Average scripting time to generate last 10 frames: 4.223500000000001ms
@@ -132,23 +134,34 @@ Found an error in function updatePosistions. I had created a new variable scroll
 - Average scripting time to generate last 10 frames: 0.5265000000003056ms
 - Average scripting time to generate last 10 frames: 0.3219999999999345ms
 
-5.
 
-Time to generate pizzas on load: 19.42999999999998ms
-Average scripting time to generate last 10 frames: 0.7000000000004235ms
-Average scripting time to generate last 10 frames: 0.269999999999709ms
-Average scripting time to generate last 10 frames: 0.32150000000037837ms
-Average scripting time to generate last 10 frames: 0.4450000000000728ms
-Average scripting time to generate last 10 frames: 0.41749999999992726ms
 
-Time to resize pizzas: 1.0899999999965075ms
-Time to resize pizzas: 0.8500000000058208ms
-Time to resize pizzas: 0.9700000000011642ms
-Time to resize pizzas: 0.9799999999959255ms
+## 5. PageSpeed
 
-6. Grunt
+The website is now meeting specification on ressize pizzas and frame rate. However, it also needs to score above 90 using [Google PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights) for both mobile and desktop. Initial scores revealed that there was much work to do. Mobile scored 66/100 for Speed and 72/100 for User Experience. Desktop scored 30/100.
 
-JS
+Both scores increased after the above optimizations were made, desktop actually met expectations after images were optimized. Mobile was still too far away. Suggestions from PageSpeed were to:
+
+- Eliminate Render Blocking Javascript and CSS above the fold
+- Minify JavaScript
+- Prioritize visible content
+
+I decided to use Grunt to perform these tasks.
+
+## 6. Grunt
+
+I used the [Grunt Setup](http://gruntjs.com/getting-started) guide to get Grunt setup. First you must install [Node.js](https://docs.npmjs.com/getting-started/installing-node) and then update NPM using `npm install npm -g' from the Command Line.
+
+Next install the [Grunt CLI](http://gruntjs.com/getting-started) `npm install -g grunt-cli`.
+
+Now you create a gruntfile.js (manually) and a package.json (using `npm init`) in your project folder.
+
+Next you download the [Plugin](http://gruntjs.com/plugins) you want to use. The Grunt Plugin performs the "work" after you configure your gruntfile.js.
+
+First I wanted to minify my Javascript. To do this I downloaded the [Uglify](https://www.npmjs.com/package/grunt-contrib-uglify) plugin.
+
+This was done using the `npm install grunt-contrib-uglify --save-dev` from hte command line the following gruntfile configuration.
+
 ```
 module.exports = function(grunt) {
 
@@ -170,6 +183,11 @@ grunt.loadNpmTasks('grunt-contrib-uglify');
 grunt.registerTask('default', ['uglify']);
 
 }
+```
+
+Next I wanted to identify the critical code needed for above the fold content.I used [critical](https://www.npmjs.com/package/grunt-critical) to perform this task. I used the following configuration file. This created a newfile "Pizza2.html" with all of the necessary css code inlined within the html file.
+
+```
 module.exports = function(grunt) {
 
 
@@ -201,31 +219,34 @@ grunt.registerTask('default', ['critical']);
 
 }
 
-CSS
+```
 
+#CSS-Minification
+
+After optimizing the CSS for above the fold content, I also wanted to minify the CSS. To do this, I used [cssmin](https://www.npmjs.com/package/grunt-contrib-cssmin)
+
+```
 grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    critical: {
-        test: {
-            options: {
-                base: './',
-                css: [
-                    'css/style.min.css',
-                    'css/bootstrap-grid.css'
-                ],
-                width: 320,
-                height: 70
-            },
-            src: 'test/fixture/index.html',
-            dest: 'test/generated/critical.css'
-        }
-    }
+    cssmin: {
+  target: {
+    files: [{
+      expand: true,
+      cwd: 'css/',
+      src: ['*.css', '!*.min.css'],
+      dest: 'css/',
+      ext: '.min.css'
+    }]
+  }
+}
+
+
 
 
 });
 
-grunt.loadNpmTasks('grunt-critical');
+grunt.loadNpmTasks('grunt-cssmin');
 
 grunt.registerTask('default', ['cssmin']);
 
