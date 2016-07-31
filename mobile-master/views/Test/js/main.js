@@ -403,21 +403,24 @@ var resizePizzas = function(size) {
   window.performance.mark("mark_start_resize");   // User Timing API function
 
   // Changes the value for the size of the pizza above the slider
-  function changeSliderLabel(size) {
+    //Changed to document.getElementById()
+   function changeSliderLabel(size) {
     switch(size) {
       case "1":
-        document.querySelector("#pizzaSize").innerHTML = "Small";
+        document.getElementById("pizzaSize").innerHTML = "Small";
         return;
       case "2":
-        document.querySelector("#pizzaSize").innerHTML = "Medium";
+        document.getElementById("pizzaSize").innerHTML = "Medium";
         return;
       case "3":
-        document.querySelector("#pizzaSize").innerHTML = "Large";
+        document.getElementById("pizzaSize").innerHTML = "Large";
         return;
       default:
         console.log("bug in changeSliderLabel");
     }
   }
+
+  changeSliderLabel(size);
 
   changeSliderLabel(size);
 
@@ -493,6 +496,8 @@ console.log("Time to generate pizzas on load: " + timeToGenerate[0].duration + "
 // Iterator for number of times the pizzas in the background have scrolled.
 // Used by updatePositions() to decide when to log the average time per frame
 
+/*
+
 var frame = 0;
 
 // Logs the average amount of time per 10 frames needed to move the sliding background pizzas on scroll.
@@ -551,3 +556,5 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   updatePositions();
 });
+
+*/

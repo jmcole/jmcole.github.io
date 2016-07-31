@@ -77,7 +77,6 @@ document.addEventListener('DOMContentLoaded', function() {
   var p =(screen.height/s)*cols//automatically determine number of rows depending on screen height
   var movingPizzas = document.getElementById("movingPizzas1");//changed to document.getElementById()moved outside of loop
   for (var i = 0, elem; i < p; i++) {//changed value from 200 do not need that many pizzas
-    //var elem = document.createElement('img');
     elem = document.createElement('img');//Added
     elem.className = 'mover';
     elem.src = "images/pizza.png";
