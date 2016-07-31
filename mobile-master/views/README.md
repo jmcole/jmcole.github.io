@@ -1,18 +1,18 @@
 # **Website Optimization**
 
-This project is part of the Udacity [Udacity](http://udacity.com/) Front End Devloper (FEND) course. The provided website [Cams Pizzeria](http://http://jmcole.github.io/mobile-master/org/views/pizza.html) has some serious performance issues.
+This project is part of the [Udacity](http://udacity.com/) Front End Devloper (FEND) course. The provided website [Cam's Pizzeria](http://http://jmcole.github.io/mobile-master/org/views/pizza.html) has some serious performance issues.
 
 ## Before Optimization
 
-Using Chrome dev tools,along with test scripts, the following tests provided an initial baseline for the start of this optimization project.
+Using Chrome Dev Tools, along with test scripts, the following tests provided an initial baseline for the start of this optimization project.
 
-Time to generate pizzas on load: 50.420000000000016ms
-Average scripting time to generate last 10 frames: 65.17799999999922ms
-Average scripting time to generate last 10 frames: 36.927500000000876ms
-Time to resize pizzas: 166.43499999999767ms
-Time to resize pizzas: 168.31999999999243ms
-Time to resize pizzas: 143.48000000001048ms
-Total load time 3.35 S
+-Time to generate pizzas on load: 50.420000000000016ms
+-Average scripting time to generate last 10 frames: 65.17799999999922ms
+-Average scripting time to generate last 10 frames: 36.927500000000876ms
+-Time to resize pizzas: 166.43499999999767ms
+-Time to resize pizzas: 168.31999999999243ms
+-Time to resize pizzas: 143.48000000001048ms
+-Total load time 3.35 S
 
 Google Dev tools also revealed substantial jank due to long frames.
 
@@ -50,12 +50,12 @@ There are a number of activities in this code that can be pulled outside of the 
 In addition to removing all variables that do not change outside of For loop, getElementsbClassName was used instead of querySelectorAll as it boosts performance.
 
 After Changes
-Time to generate pizzas on load: 32.214999999999975ms
-Time to resize pizzas: 1.949999999999818ms
-Time to resize pizzas: 1.5700000000001637ms
-Time to resize pizzas: 1.8400000000001455ms
-Time to resize pizzas: 1.2600000000002183ms
-Time to resize pizzas: 1.4049999999997453ms
+-Time to generate pizzas on load: 32.214999999999975ms
+-Time to resize pizzas: 1.949999999999818ms
+-Time to resize pizzas: 1.5700000000001637ms
+-Time to resize pizzas: 1.8400000000001455ms
+-Time to resize pizzas: 1.2600000000002183ms
+-Time to resize pizzas: 1.4049999999997453ms
 
 Resize pizzas now meets specifications.
 
@@ -93,10 +93,10 @@ function updatePositions() {
 This function could still be improved by moving the phase calculation outside of the loop, however these change significantly improved performance.
 
 
-Average scripting time to generate last 10 frames: 12.207500000000072ms
-Average scripting time to generate last 10 frames: 18.298999999998706ms
-Average scripting time to generate last 10 frames: 16.5320000000007ms
-Average scripting time to generate last 10 frames: 16.783499999999187ms
+-Average scripting time to generate last 10 frames: 12.207500000000072ms
+-Average scripting time to generate last 10 frames: 18.298999999998706ms
+-Average scripting time to generate last 10 frames: 16.5320000000007ms
+-Average scripting time to generate last 10 frames: 16.783499999999187ms
 
 
 
@@ -114,23 +114,23 @@ for (var i = 2; i < 100; i++) {
 ```
 Changed pizza value from 200 to 20
 
-Time to generate pizzas on load: 29.49000000000001ms
-Average scripting time to generate last 10 frames: 8.258499999998838ms
-Average scripting time to generate last 10 frames: 2.7415000000000873ms
-Average scripting time to generate last 10 frames: 2.5340000000007423ms
-Average scripting time to generate last 10 frames: 2.560499999999229ms
-Average scripting time to generate last 10 frames: 2.8020000000007714ms
+-Time to generate pizzas on load: 29.49000000000001ms
+-Average scripting time to generate last 10 frames: 8.258499999998838ms
+-Average scripting time to generate last 10 frames: 2.7415000000000873ms
+-Average scripting time to generate last 10 frames: 2.5340000000007423ms
+-Average scripting time to generate last 10 frames: 2.560499999999229ms
+-Average scripting time to generate last 10 frames: 2.8020000000007714ms
 
 ## 4. Optimized images
 Reduced pizza.png and reduced pizzeria.jpg by determing the maximun display value using GoogleDev Tools. I then resized and reduced the size of the images with the online [Kraken](https://kraken.io/) tool.
 
 Found an error in function updatePosistions. I had created a new variable scrollTop and moved it outside the loop, but I did not remove the old document.body.scrollTop from within the For loop.This improved results greatly.
 
-Time to generate pizzas on load: 26.375ms
-Average scripting time to generate last 10 frames: 4.223500000000001ms
-Average scripting time to generate last 10 frames: 0.4884999999998854ms
-Average scripting time to generate last 10 frames: 0.5265000000003056ms
-Average scripting time to generate last 10 frames: 0.3219999999999345ms
+-Time to generate pizzas on load: 26.375ms
+-Average scripting time to generate last 10 frames: 4.223500000000001ms
+-Average scripting time to generate last 10 frames: 0.4884999999998854ms
+-Average scripting time to generate last 10 frames: 0.5265000000003056ms
+-Average scripting time to generate last 10 frames: 0.3219999999999345ms
 
 5.
 
