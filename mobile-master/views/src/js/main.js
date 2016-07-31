@@ -539,7 +539,7 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 36; i++) {//changed value from 200 do not need that many pizzas
+  for (var i = 0; i < 20; i++) {//changed value from 200 do not need that many pizzas
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
