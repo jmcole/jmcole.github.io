@@ -4,21 +4,17 @@ module.exports = function(grunt) {
 grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-     htmlmin: {
-       dist: {
-         options: {
-           removeComments: true,
-           collapseWhitespace: true
-         },
-         files: {
-           'dist/pizza.html': 'pizza.html'
-         }
-       }
-     },
+    uglify: {
+        build: {
+            src: 'js/main.js',
+            dest: 'js/main.min.js',
+        }
+    }
+
 });
 
-grunt.loadNpmTasks('grunt-contrib-htmlmin');
+grunt.loadNpmTasks('grunt-contrib-uglify');
 
-grunt.registerTask('default', ['htmlmin']);
+grunt.registerTask('default', ['uglify']);
 
 }
