@@ -490,7 +490,7 @@ console.log("Time to generate pizzas on load: " + timeToGenerate[0].duration + "
 
 // Iterator for number of times the pizzas in the background have scrolled.
 // Used by updatePositions() to decide when to log the average time per frame
-
+/*
 var frame = 0;
 
 // Logs the average amount of time per 10 frames needed to move the sliding background pizzas on scroll.
@@ -502,7 +502,7 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
   }
   console.log("Average scripting time to generate last 10 frames: " + sum / 10 + "ms");
 }
-
+*/
 // The following code for sliding background pizzas was pulled from Ilya's demo found at:
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 

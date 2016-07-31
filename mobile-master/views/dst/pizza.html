@@ -145,7 +145,19 @@ img {
 
 </style>
 <script id="loadcss">(function(u,s){!function(e){"use strict";var n=function(n,t,o){var l,r=e.document,i=r.createElement("link");if(t)l=t;else{var a=(r.body||r.getElementsByTagName("head")[0]).childNodes;l=a[a.length-1]}var d=r.styleSheets;i.rel="stylesheet",i.href=n,i.media="only x",l.parentNode.insertBefore(i,t?l:l.nextSibling);var f=function(e){for(var n=i.href,t=d.length;t--;)if(d[t].href===n)return e();setTimeout(function(){f(e)})};return i.onloadcssdefined=f,f(function(){i.media=o||"all"}),i};"undefined"!=typeof module?module.exports=n:e.loadCSS=n}("undefined"!=typeof global?global:this);for(var i in u){loadCSS(u[i],s);}}(['css/style.css','css/bootstrap-grid.css'],document.getElementById("loadcss")));</script>
-<script>function updatePositions() {
+<script>
+var frame = 0;
+
+// Logs the average amount of time per 10 frames needed to move the sliding background pizzas on scroll.
+function logAverageFrame(times) {   // times is the array of User Timing measurements from updatePositions()
+  var numberOfEntries = times.length;
+  var sum = 0;
+  for (var i = numberOfEntries - 1; i > numberOfEntries - 11; i--) {
+    sum = sum + times[i].duration;
+  }
+  console.log("Average scripting time to generate last 10 frames: " + sum / 10 + "ms");
+}
+function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
   var scrollTop = document.body.scrollTop;
