@@ -289,3 +289,35 @@ In addition, I also inlined some of the Javscript in order to improve the websit
 # Final Results
 
 After using Grunt to minify my HTML, CSS, JS, and identify/inline critical CSS my page scores are now. 95/100 for mobile and 97 out of 100 for desktop.
+
+Updated based on [Udacity Review](https://review.udacity.com/#!/reviews/197611)
+
+- Used `document.getElementById()`throughout main.js.
+- Rewrote UpdatePositions to better emulate original website.
+
+'''
+for (var i = 0, len = items.length, phase; i < len; i++) {
+    phase = Math.sin((scrollTop) + (i % 5));
+    items[i].style.transform = 'translateX(' + 100 * phase + 'px)';
+}
+```
+- Rewrote Sliding Pizza Generator- Number of pizzas is now determined by the screen height rather than a set number.
+
+```
+var cols = 8;
+  var s = 256;
+  var p =(screen.height/s)*cols//automatically determine number of rows depending on screen height
+  var movingPizzas = document.getElementById("movingPizzas1");//changed to document.getElementById()moved outside of loop
+  for (var i = 0, elem; i < p; i++) {//changed value from 200 do not need that many pizzas
+    //var elem = document.createElement('img');
+    elem = document.createElement('img');//Added
+    elem.className = 'mover';
+    elem.src = "images/pizza.png";
+    elem.style.height = "100px";
+    elem.style.width = "73.333px";
+    elem.style.left = i % cols * s + 'px';//Changed by reviewer suggestion
+    elem.style.top = (Math.floor(i / cols) * s) + 'px';
+    movingPizzas.appendChild(elem);
+  }
+  updatePositions();
+'''
