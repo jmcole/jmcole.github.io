@@ -286,3 +286,6 @@ grunt.registerTask('default', ['htmlmin']);
 
 In addition, I also inlined some of the javscript in order to improve the website above the fold download time.
 
+# Final Results
+
+After using Grunt to minify my HTML, CSS, JS, and identify/inline critical CSS my page scores are now. 95/100 for mobile and 97 out of 100 for desktop.
