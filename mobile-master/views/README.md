@@ -255,7 +255,7 @@ grunt.registerTask('default', ['cssmin']);
 
 # HTML Minification
 
-I minified the HMTL using [hmtlmin](https://www.npmjs.com/package/grunt-contrib-htmlmin)with the following configuration file.
+I minified the HMTL using [hmtlmin](https://www.npmjs.com/package/grunt-contrib-htmlmin) with the following configuration file.
 
 ```
 module.exports = function(grunt) {
