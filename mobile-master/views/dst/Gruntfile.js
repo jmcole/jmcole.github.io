@@ -4,17 +4,28 @@ module.exports = function(grunt) {
 grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    uglify: {
-        build: {
-            src: 'js/main.js',
-            dest: 'js/main.min.js',
+    critical: {
+        test: {
+            options: {
+                base: './',
+                css: [
+                    'css/style.min.css',
+                    'css/bootstrap-grid.min.css'
+                ],
+                width: 375,
+                height: 667
+            },
+            src: 'pizza.html',
+            dest: 'pizza2.html'
         }
     }
 
+
 });
 
-grunt.loadNpmTasks('grunt-contrib-uglify');
+grunt.loadNpmTasks('grunt-critical');
 
-grunt.registerTask('default', ['uglify']);
+grunt.registerTask('default', ['critical']);
+
 
 }
