@@ -12,8 +12,8 @@ grunt.initConfig({
                     'css/style.min.css',
                     'css/bootstrap-grid.min.css'
                 ],
-                width: 375,
-                height: 667
+                width: 768,
+                height: 1024
             },
             src: 'pizza.html',
             dest: 'pizza2.html'
