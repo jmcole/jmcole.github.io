@@ -25,6 +25,21 @@ body {
   margin-right: -15px;
 }
 
+
+#pizzaSize {
+  font-weight: 800;
+}
+
+.mover {
+  position: fixed;
+  width: 256px;
+  z-index: -1;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: transform;
+  transform: translate3d(0,0,0);
+}
+
 .col-md-12,
 .col-md-6 {
   position: relative;
@@ -47,22 +62,14 @@ body {
 }</style><meta name="viewport" content="width=device-width,initial-scale=1"><style type="text/css">@media (min-width:768px){.container{width:750px}}@media (min-width:992px){.container{width:970px}}@media (min-width:1200px){.container{width:1170px}}@media (min-width:992px){.col-md-12,.col-md-4,.col-md-6,.col-md-8{float:left}.col-md-12{width:100%}.col-md-8{width:66.66666667%}.col-md-6{width:50%}.col-md-4{width:33.33333333%}.col-md-push-3{left:25%}.col-md-push-2{left:16.66666667%}}*{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-box-sizing:border-box}body{font-family:"Trebuchet MS",Helvetica,sans-serif;background:#000}input{background:grey;font-size:18px}form{display:inline-block}.centered{text-align:center}.container{background-color:rgba(240,60,60,.8);margin-right:auto;margin-left:auto;padding-left:15px;padding-right:15px}.img-responsive{width:100%\9;max-width:100%;height:auto;display:block}img{vertical-align:middle}.row{margin-left:-15px;margin-right:-15px}.col-md-12,.col-md-4,.col-md-6,.col-md-8{position:relative;min-height:1px;padding-left:15px;padding-right:15px}.container:after,.container:before,.row:after,.row:before{content:" ";display:table}.container:after,.row:after{clear:both}</style><script id="loadcss">(function(u,s){!function(e){"use strict";var n=function(n,t,o){var l,r=e.document,i=r.createElement("link");if(t)l=t;else{var a=(r.body||r.getElementsByTagName("head")[0]).childNodes;l=a[a.length-1]}var d=r.styleSheets;i.rel="stylesheet",i.href=n,i.media="only x",l.parentNode.insertBefore(i,t?l:l.nextSibling);var f=function(e){for(var n=i.href,t=d.length;t--;)if(d[t].href===n)return e();setTimeout(function(){f(e)})};return i.onloadcssdefined=f,f(function(){i.media=o||"all"}),i};"undefined"!=typeof module?module.exports=n:e.loadCSS=n}("undefined"!=typeof global?global:this);for(var i in u){loadCSS(u[i],s);}}(['css/style.css','css/bootstrap-grid.css'],document.getElementById("loadcss")));</script><script>function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
-  var scrollTop = document.body.scrollTop;//Move outside For loop
-  var items = document.getElementsByClassName('mover');// Changed to more effecient getElementsByClassName
-
- /* for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((scrollTop) + (i % 5));
-    var pizzas = items[i].basicLeft + 100 * phase + 'px';// created seperate variable due to high px values
-    items[i].style.transform = 'translateX(' + pizzas + ')';//Changed to transform
-  }*/
-
+  var scrollTop = document.body.scrollTop;
+  var items = document.getElementsByClassName('mover');
   for (var i = 0, len = items.length, phase; i < len; i++) {
     phase = Math.sin((scrollTop) + (i % 5));
     items[i].style.transform = 'translateX(' + 100 * phase + 'px)';
 }
 
-  // User Timing API to the rescue again. Seriously, it's worth learning.
-  // Super easy to create custom metrics.
+
   window.performance.mark("mark_end_frame");
   window.performance.measure("measure_frame_duration", "mark_start_frame", "mark_end_frame");
   if (frame % 10 === 0) {
@@ -71,23 +78,21 @@ body {
   }
 }
 
-// runs updatePositions on scroll
 window.addEventListener('scroll', updatePositions);
 
-// Generates the sliding pizzas when the page loads.
+
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  var p =(screen.height/s)*cols//automatically determine number of rows depending on screen height
-  var movingPizzas = document.getElementById("movingPizzas1");//changed to document.getElementById()moved outside of loop
-  for (var i = 0, elem; i < p; i++) {//changed value from 200 do not need that many pizzas
-    //var elem = document.createElement('img');
-    elem = document.createElement('img');//Added
+  var p =(screen.height/s)*cols
+  var movingPizzas = document.getElementById("movingPizzas1");
+  for (var i = 0, elem; i < p; i++) {
+    elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
-    elem.style.left = i % cols * s + 'px';//Changed by reviewer suggestion
+    elem.style.left = i % cols * s + 'px';
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     movingPizzas.appendChild(elem);
   }
