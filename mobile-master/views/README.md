@@ -295,7 +295,7 @@ Updated based on [Udacity Review](https://review.udacity.com/#!/reviews/197611)
 - Used `document.getElementById()`throughout main.js.
 - Rewrote UpdatePositions to better emulate original website.
 
-'''
+```
 for (var i = 0, len = items.length, phase; i < len; i++) {
     phase = Math.sin((scrollTop) + (i % 5));
     items[i].style.transform = 'translateX(' + 100 * phase + 'px)';
