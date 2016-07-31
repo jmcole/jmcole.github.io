@@ -284,7 +284,7 @@ grunt.registerTask('default', ['htmlmin']);
 }
 ```
 
-In addition, I also inlined some of the javscript in order to improve the website above the fold download time.
+In addition, I also inlined some of the Javscript in order to improve the website above the fold download time.
 
 # Final Results
 
