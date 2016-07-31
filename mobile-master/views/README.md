@@ -320,6 +320,6 @@ var cols = 8;
     movingPizzas.appendChild(elem);
   }
   updatePositions();
-'''
+```
 
 Also corrected index.html so that correct image and links display.
