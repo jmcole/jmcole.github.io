@@ -323,3 +323,5 @@ var cols = 8;
 ```
 
 Also corrected index.html so that correct image and links display.
+
+Inlined all css and Javascript
