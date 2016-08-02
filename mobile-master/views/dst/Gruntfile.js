@@ -4,6 +4,41 @@ module.exports = function(grunt) {
 grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
+     htmlmin: {
+       dist: {
+         options: {
+           removeComments: true,
+           collapseWhitespace: true
+         },
+         files: {
+           'dist/index.html': 'index.html'
+         }
+       }
+     },
+});
+
+grunt.loadNpmTasks('grunt-contrib-htmlmin');
+
+grunt.registerTask('default', ['htmlmin']);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+    pkg: grunt.file.readJSON('package.json'),
+
     critical: {
         test: {
             options: {
@@ -29,3 +64,4 @@ grunt.registerTask('default', ['critical']);
 
 
 }
+*/
