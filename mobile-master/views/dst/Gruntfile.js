@@ -11,7 +11,7 @@ grunt.initConfig({
            collapseWhitespace: true
          },
          files: {
-           'dist/index.html': 'index.html'
+           'dist/index.html': 'index2.html'
          }
        }
      },
