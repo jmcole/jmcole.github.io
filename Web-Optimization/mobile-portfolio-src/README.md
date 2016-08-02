@@ -322,6 +322,6 @@ var cols = 8;
   updatePositions();
 ```
 
-6. Index.html
+Also corrected index.html so that correct image and links display.
 
-Made changes to Index.html so that fonts are loaded via Javascript rather than CSS. Optimized images using [Kraken](https://kraken.io/) tool. Added `async` so that javascript loads after page is rendered.
+Inlined all css and Javascript and used grunt-critical to move CSS to properly render above the fold content.

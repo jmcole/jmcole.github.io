@@ -324,4 +324,4 @@ var cols = 8;
 
 Also corrected index.html so that correct image and links display.
 
-Inlined all css and Javascript
+Inlined all css and Javascript and used grunt-critical to move CSS to properly render above the fold content.
