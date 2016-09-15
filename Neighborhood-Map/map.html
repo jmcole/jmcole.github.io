@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Neighborhood Map</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet'>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <script src="js/oauth-signature.min.js"></script>
+    <script src="js/jquery-1.12.1.min.js"></script>
+    <script src="js/knockout-3.2.0.js"></script>
+    <style>
+                html, body {
+                  height: 100%;
+                  margin: 0;
+                  padding: 0;
+                }
+                #map {
+                  height: 100%;
+                }
+                #panel {
+                  position: absolute;
+                  top: 10px;
+                  left: 25%;
+                  z-index: 5;
+                  background-color: #fff;
+                  padding: 5px;
+                  border: 1px solid #999;
+                  text-align: center;
+                }
+
+
+                #panel, .panel {
+                  font-family: 'Roboto','sans-serif';
+                  line-height: 30px;
+                  padding-left: 10px;
+                }
+
+                #panel select, #panel input, .panel select, .panel input {
+                  font-size: 15px;
+                }
+
+                #panel select, .panel select {
+                  width: 100%;
+                }
+
+                #panel i, .panel i {
+                  font-size: 12px;
+                }
+    </style>
+     <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/index.html">Portfolio</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Neighborhood Map</a></li>
+                <li><a href="resume.html">Interactive Resume</a></li>
+                <li><a href="game.html">Arcade Game</a></li>
+                <li><a href="#">Website Optimization</a></li>
+                <li><a href="#">Neighborhood Map</a></li>
+                <li><a href="#">Feed Reader Tester</a></li>
+              </ul>
+            </div>
+          </div>
+     </nav>
+  </head>
+  <body>
+    <div id ="search">
+      <div id="input-group">
+        <input class="form-control" placeholder="Search" type="text" data-bind='value:searchFilter,valueUpdate: "afterkeydown"'>
+      </div>
+    </div>
+    <div id="map"></div>
+    <script src="js/map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfc3S5SsQsx2mIhbcb3FpgJlqabPnI91Q&callback=initMap"
+        async defer></script>
+  </body>
+</html>
