@@ -1,9 +1,5 @@
-//https://discussions.udacity.com/t/how-to-make-ajax-request-to-yelp-api/13699/5
-//https://discussions.udacity.com/t/creating-infowindows-with-yelp-data/182773/7
 
-
-'use strict';
-var map; //http://stackoverflow.com/questions/33641663/why-isnt-this-an-instance-of-map-of-google-maps-map-invalidvalueerror-setmap
+var map;
 var markers = [];
 
 function initMap() {
@@ -14,11 +10,9 @@ function initMap() {
 }
 
 
-
 function nonce_generate() {
     return (Math.floor(Math.random() * 1e12).toString());
   }
-
 
   var yelp_url = 'https://api.yelp.com/v2/search'
   var auth = {
@@ -46,27 +40,36 @@ function nonce_generate() {
   var encodedSignature = oauthSignature.generate('GET', yelp_url, parameters, auth.consumerSecret, auth.accessTokenSecret);
   parameters.oauth_signature = encodedSignature;
 
-
-  $.ajax({
+    $.ajax({
     url: yelp_url,
     data: parameters,
     cache: true,                // This is crucial to include as well to prevent jQuery from adding on a cache-buster parameter "_=23489489749837", invalidating our oauth-signature
     dataType: 'jsonp',
-    success: function(yelpResults) {
+    success: googleHandler,
+    fail: function(xhr, status, error) {
+    console.log("An AJAX error occured: " + status + "\nError: " + error + "\nError detail: " + xhr.responseText);
+    }
+  });
 
-    var restaurants = yelpResults.businesses
+function googleHandler(data){
+   //console.log(data);
+    var restaurants = data.businesses;
+
     restaurants.forEach(function(restaurant) {
       var name =restaurant.name;
       var lat = restaurant.location.coordinate.latitude;
       var lng = restaurant.location.coordinate.longitude;
-      var myLatlng = new google.maps.LatLng(lat, lng);
+      //var myLatlng = new google.maps.LatLng(lat, lng);
+      //var myLatlng = {lat: 39.965765, lng: -86.021091};
       var marker = new google.maps.Marker({
-        position: myLatlng,
+        position: new google.maps.LatLng(lat, lng),
         title: name,
         map: map //https://discussions.udacity.com/t/make-location-markers-appear/186780/2
-      });
+         });
+
       markers.push(marker)
-      //console.log(marker);
+      console.log(marker)
+
       function setMapOnAll(map) {
         for (var i = 0; i < markers.length; i++) {
           markers[i].setMap(map);
@@ -79,11 +82,9 @@ function nonce_generate() {
 
     });
 
-    },
-    fail: function(xhr, status, error) {
-    console.log("An AJAX error occured: " + status + "\nError: " + error + "\nError detail: " + xhr.responseText);
-    }
-  });
+};
+
+
 
 
 

@@ -1,20 +1,9 @@
-//https://discussions.udacity.com/t/how-to-make-ajax-request-to-yelp-api/13699/5
-//https://discussions.udacity.com/t/creating-infowindows-with-yelp-data/182773/7
+//https://discussions.udacity.com/t/having-trouble-on-markers-array/181801/2
 
+var map;
+var locations = [];
 
-'use strict';
-var map; //http://stackoverflow.com/questions/33641663/why-isnt-this-an-instance-of-map-of-google-maps-map-invalidvalueerror-setmap
-var markers = [];
-
-function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 14,
-    center: {lat: 39.965765, lng: -86.021091}
-  });
-}
-
-
-
+// MODEL
 function nonce_generate() {
     return (Math.floor(Math.random() * 1e12).toString());
   }
@@ -60,32 +49,55 @@ function nonce_generate() {
       var lat = restaurant.location.coordinate.latitude;
       var lng = restaurant.location.coordinate.longitude;
       var myLatlng = new google.maps.LatLng(lat, lng);
-      var marker = new google.maps.Marker({
-        position: myLatlng,
-        title: name,
-        map: map //https://discussions.udacity.com/t/make-location-markers-appear/186780/2
-      });
-      markers.push(marker)
-      //console.log(marker);
-      function setMapOnAll(map) {
-        for (var i = 0; i < markers.length; i++) {
-          markers[i].setMap(map);
-        }
-      }
-            // Shows any markers currently in the array.
-      function showMarkers() {
-        setMapOnAll(map);
-      }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+var Model = [
+  // Array containing location data
+];
+
+//VIEW MODEL
+var ViewModel = function ViewModel() {
+
+      // functions to add markers, show data, filter locations, update infowindow content etc.
+      //Run API calls to get data
+
+  var self = this;
+
+  // create an observable array using data array
+  self.locations = ko.observableArray( dataArray );
+
+  self.locations().forEach(function (location) {
+
+    // define the marker
+    var marker = new google.maps.Marker({
+      map: map,
+      position: new google.maps.LatLng(location.lat, location.lng),\
+      title: location.name,
+      icon:  'images/mycustomicon.png',
+      animation: google.maps.Animation.DROP
     });
 
-    },
-    fail: function(xhr, status, error) {
-    console.log("An AJAX error occured: " + status + "\nError: " + error + "\nError detail: " + xhr.responseText);
-    }
-  });
+    // add the marker as a property of the location
+    location.marker = marker;
+  }
 
+  // more View Model below
+};
 
-
-
-
+//Function to load map and start up app
+var initMap = function() {
+  // Load  Google Map:   map = new google.maps.Map(document.getElementById('map') etc.
+  // Instantiate ViewModel:   ko.applyBindings(new ViewModel());
+};
