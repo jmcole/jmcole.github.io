@@ -74,22 +74,16 @@
      </nav>
   </head>
   <body>
-   <!-- <div id ="search">
-      <div id="input-group">
-        <input class="form-control" placeholder="Search" type="text" data-bind='value:searchFilter,valueUpdate: "afterkeydown"'>
-      </div>
-    </div>-->
     <div id="locations">
       <h3>Search</h3>
-      <input type="search" class="form-control" data-bind="textInput: query,valueUpdate: 'keyup', autocomplete=off"/>
+      <input type="search" class="form-control" data-bind="textInput: Model,valueUpdate: 'keyup', autocomplete=off"/>
       <h3>Locations</h3>
-      <select data-bind="foreach: filteredLocations, value:selectedItem" size="5" id="location_list">
-      <option data-bind="text: name, click: $parent.onClick"></option>
-      </select>
+      <div>
+        <span data-bind="text: myMessage"></span>
+      </div>
     </div>
-
     <div id="map"></div>
-    <script src="js/map3.js"></script>
+    <script src="js/map.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfc3S5SsQsx2mIhbcb3FpgJlqabPnI91Q&callback=initMap"
         async defer></script>
   </body>
