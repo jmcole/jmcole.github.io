@@ -1,7 +1,9 @@
 var toggleBounce;
 
-//Model
-var locations ={};
+// Model
+var Model = [
+  // Array containing location data
+];
 
 //View Model
 var ViewModel = function() {
@@ -52,49 +54,48 @@ var ViewModel = function() {
       var restaurants = data.businesses;
         restaurants.forEach(function(restaurant) {
           var lat = restaurant.location.coordinate.latitude;
-          var lng= restaurant.location.coordinate.longitude;
-          var locations ={
-          name: restaurant.name,
-          resImg: restaurant.image_url,
-          address: restaurant.location.display_address,
-          phone: restaurant.display_phone,
-          ratingImg: restaurant.rating_img_url_small,
-          rating: restaurant.rating,
-          snippet: restaurant.snippet_text,
-          marker: new google.maps.Marker({
+          var lng = restaurant.location.coordinate.longitude;
+          var name = restaurant.name;
+          var resImg = restaurant.image_url;
+          var address = restaurant.location.display_address;
+          var phone = restaurant.display_phone;
+          var ratingImg = restaurant.rating_img_url_small;
+          var rating = restaurant.rating;
+          var snippet = restaurant.snippet_text;
+          var marker = new google.maps.Marker({
             position: new google.maps.LatLng(lat,lng),
-            title: restaurant.title,
+            title: name,
             map: map, //https://discussions.udacity.com/t/make-location-markers-appear/186780/2
-            animation: google.maps.Animation.DROP})
-        }
+            animation: google.maps.Animation.DROP
+      });
 
-          var locationList = "<h6>"+"<a href="+locations.name+">"+locations.name+"</a>"+"</h6>";
 
-          var content = "<h2>" + locations.name + "</h2>" + "<img style='float:left;width:100px;height:100px; margin-right:10px;' src="+locations.resImg+">"+
-            "<h4>Phone: " + locations.phone + "<br>Rating: " + locations.rating + " "+"<img src= " + locations.ratingImg+">"
-            + "<h6>"+locations.snippet+"</h6";//https://discussions.udacity.com/t/creating-infowindows-with-yelp-data/182773/5
+          var locationList = "<h6>"+"<a href="+name+">"+name+"</a>"+"</h6>";
+
+          var content = "<h2>" + name + "</h2>" + "<img style='float:left;width:100px;height:100px; margin-right:10px;' src="+resImg+">"+
+            "<h4>Phone: " + phone + "<br>Rating: " + rating + " "+"<img src= " + ratingImg+">"
+            + "<h6>"+snippet+"</h6";//https://discussions.udacity.com/t/creating-infowindows-with-yelp-data/182773/5
 
           var infowindow = new google.maps.InfoWindow({
             content: content
           });
 
           toggleBounce=function() {//https://developers.google.com/maps/documentation/javascript/markers
-            if (locations.marker.getAnimation() !== null) {
-            locations.marker.setAnimation(null);
+            if (marker.getAnimation() !== null) {
+            marker.setAnimation(null);
             } else {
-            locations.marker.setAnimation(google.maps.Animation.BOUNCE);
-            infowindow.open(locations.map, locations.marker);
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+            infowindow.open(map, marker);
             setTimeout(function() {
-            locations.marker.setAnimation(null);
+            marker.setAnimation(null);
             }, 1000); //https://developer.mozilla.org/en-US/Add-ons/Code_snippets/Timers
             }
           };
-            locations.marker.addListener('click',toggleBounce);
-
+            marker.addListener('click',toggleBounce);
 
           self.myMessage.push([locationList]);
-            });
-      };
+        });
+    };
 };
 
 //Function to load map and start up app
@@ -107,4 +108,3 @@ var initMap = function() {
 
     ko.applyBindings(new ViewModel());
 };
-
