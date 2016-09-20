@@ -63,12 +63,13 @@ var ViewModel = function() {
           snippet: restaurant.snippet_text,
           marker: new google.maps.Marker({
             position: new google.maps.LatLng(lat,lng),
-            title: restaurant.title,
+            title: restaurant.name,
             map: map, //https://discussions.udacity.com/t/make-location-markers-appear/186780/2
             animation: google.maps.Animation.DROP})
         }
 
-          var locationList = "<h6>"+"<a href="+locations.name+">"+locations.name+"</a>"+"</h6>";
+          var markers = locations.markers;
+          console.log(markers);
 
           var content = "<h2>" + locations.name + "</h2>" + "<img style='float:left;width:100px;height:100px; margin-right:10px;' src="+locations.resImg+">"+
             "<h4>Phone: " + locations.phone + "<br>Rating: " + locations.rating + " "+"<img src= " + locations.ratingImg+">"
