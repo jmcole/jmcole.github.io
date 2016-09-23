@@ -1,7 +1,5 @@
-//http://codepen.io/prather-mcs/pen/KpjbNN?editors=1111
-//https://discussions.udacity.com/t/linking-the-ko-filter-to-the-markers-le-sigh/35771/2
-//https://discussions.udacity.com/t/how-to-implement-knockout-into-the-project/181122/4
-//https://discussions.udacity.com/t/any-guidance-on-coding-p5/3757/7
+
+
 var toggleBounce;
 var selectLocation;
 var infowindow;
@@ -12,6 +10,9 @@ var searchString;
 
 
 //Model
+
+// Layout of code based on Udacity Forum advice by Sarah https://discussions.udacity.com/t/any-guidance-on-coding-p5/3757/7
+
 
 // This is an array of locations and position parameters that will be passed to google maps and wikipedia API
 var model = [
@@ -81,6 +82,8 @@ self.allLocations.forEach(function(location) {
 });
 
 //This function it untilized when a user clicks on the button on the view.
+//Based on advice given by Udayan on Udacity forum https://discussions.udacity.com/t/wrong-info-window-opens-on-list/189223/3
+
 self.selectLocation = function(location) {
 		console.log(location.marker)
 		marker = location.marker
@@ -88,7 +91,9 @@ self.selectLocation = function(location) {
 };
 
 //Search Filter
-//https://discussions.udacity.com/t/linking-the-ko-filter-to-the-markers-le-sigh/35771/2
+
+//Search filter implementation based on https://discussions.udacity.com/t/linking-the-ko-filter-to-the-markers-le-sigh/35771/2 and //http://codepen.io/prather-mcs/pen/KpjbNN?editors=1111
+
 //The search filter uses the "visible" knockout binding to hide the locations and markers based on userInput
 self.visibleLocations = ko.observableArray();
 

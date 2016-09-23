@@ -13,3 +13,4 @@
 4. https://discussions.udacity.com/t/linking-the-ko-filter-to-the-markers-le-sigh/35771/2
 5. http://codepen.io/prather-mcs/pen/KpjbNN?editors=1111
 6. https://discussions.udacity.com/t/how-to-implement-knockout-into-the-project/181122/4
+7. https://discussions.udacity.com/t/wrong-info-window-opens-on-list/189223/3
