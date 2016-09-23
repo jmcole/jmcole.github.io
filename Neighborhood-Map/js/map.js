@@ -1,5 +1,7 @@
 //http://codepen.io/prather-mcs/pen/KpjbNN?editors=1111
 //https://discussions.udacity.com/t/linking-the-ko-filter-to-the-markers-le-sigh/35771/2
+//https://discussions.udacity.com/t/how-to-implement-knockout-into-the-project/181122/4
+//https://discussions.udacity.com/t/any-guidance-on-coding-p5/3757/7
 var toggleBounce;
 var selectLocation;
 var infowindow;
@@ -10,6 +12,8 @@ var searchString;
 
 
 //Model
+
+// This is an array of locations and position parameters that will be passed to google maps and wikipedia API
 var model = [
         {
           title: 'Daniel Boone Homestead',
@@ -56,7 +60,7 @@ var self = this;
 self.allLocations = [];
 
 
-//Create location objects 
+//Create location objects
 model.forEach(function(location) {
 	self.allLocations.push(new Location(location));
 });
@@ -73,7 +77,7 @@ self.allLocations.forEach(function(location) {
 	location.marker = new google.maps.Marker(markerOptions);
 	location.marker.addListener('click', function() {
 		toggleBounce(this);
-    });	
+    });
 });
 
 //This function it untilized when a user clicks on the button on the view.
@@ -81,40 +85,45 @@ self.selectLocation = function(location) {
 		console.log(location.marker)
 		marker = location.marker
 		toggleBounce(marker)
-      
 };
 
+//Search Filter
+
+//The search filter uses the "visible" knockout binding to hide the locations and markers based on userInput
 self.visibleLocations = ko.observableArray();
 
+//Creates the visibleLocations. All locations visible until user input
 self.allLocations.forEach(function(location) {
 	self.visibleLocations.push(location);
 });
 
-self.userInput = ko.observable('');
+self.userInput = ko.observable('');//Knockout tracks user input
 
+//Compare userinput to location names
 self.filterMarkers = function() {
 	var searchInput = self.userInput().toLowerCase();
 	self.visibleLocations.removeAll();
     self.allLocations.forEach(function(location) {
       location.marker.setVisible(false);
-		if (location.title.toLowerCase().indexOf(searchInput) !== -1) {
+		    if (location.title.toLowerCase().indexOf(searchInput) !== -1) {
 			self.visibleLocations.push(location);
 		}
-    });
-	
+});
+
+//Sets locations to visible
+
 self.visibleLocations().forEach(function(location) {
       location.marker.setVisible(true);
     });
   };
 
-
-
+// saves a reference to the marker
 function Location(dataObj) {
 	this.title = dataObj.title;
     this.position = dataObj.position;
     this.marker = null;
   };
-  
+
 
   // wikipedia API call
 
@@ -144,7 +153,8 @@ function Location(dataObj) {
       });
       infowindow.open(map, marker);
     }
-	
+
+  //toggleBounce causes the marker to bounce when the user clicks on the lst button or the marker.
 	var toggleBounce=function(marker) {//https://developers.google.com/maps/documentation/javascript/markers
       apiCall(marker);
       if (marker.getAnimation() !== null) {
