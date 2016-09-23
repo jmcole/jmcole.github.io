@@ -88,7 +88,7 @@ self.selectLocation = function(location) {
 };
 
 //Search Filter
-
+//https://discussions.udacity.com/t/linking-the-ko-filter-to-the-markers-le-sigh/35771/2
 //The search filter uses the "visible" knockout binding to hide the locations and markers based on userInput
 self.visibleLocations = ko.observableArray();
 
