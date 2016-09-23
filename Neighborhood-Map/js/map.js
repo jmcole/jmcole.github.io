@@ -131,6 +131,7 @@ function Location(dataObj) {
 
 
   // wikipedia API call
+  //Wiki API call based on Udacity AJAX NYT minicourse as part of FEND coursework
 
   var apiCall = function(marker){
 	var url = 'http://en.wikipedia.org/w/api.php?action=opensearch&format=json&limit=1&search='+marker.title+'&callback=?'
