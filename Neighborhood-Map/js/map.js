@@ -1,5 +1,4 @@
 
-
 var toggleBounce;
 var selectLocation;
 var infowindow;
@@ -7,14 +6,12 @@ var marker=[];
 var markers = [];
 var searchString;
 
-
-
 //Model
 
 // Layout of code based on Udacity Forum advice by Sarah https://discussions.udacity.com/t/any-guidance-on-coding-p5/3757/7
 
-
 // This is an array of locations and position parameters that will be passed to google maps and wikipedia API
+
 var model = [
         {
           title: 'Daniel Boone Homestead',
@@ -54,132 +51,133 @@ var model = [
 
 
 //ViewModel
-
-
 var viewModel = function(){
-var self = this;
-self.allLocations = [];
+  var self = this;
+  self.allLocations = [];
 
 
-//Create location objects
-model.forEach(function(location) {
-	self.allLocations.push(new Location(location));
-});
+  //Create location objects
+  model.forEach(function(location) {
+  	self.allLocations.push(new Location(location));
+  });
 
 
-// Create Markers and options
-self.allLocations.forEach(function(location) {
-	var markerOptions = {
-	title:location.title,
-	map: map,
-	position: location.position,
-	animation: google.maps.Animation.DROP
-	};
-	location.marker = new google.maps.Marker(markerOptions);
-	location.marker.addListener('click', function() {
-		toggleBounce(this);
+  // Create Markers and options
+  self.allLocations.forEach(function(location) {
+  	var markerOptions = {
+    	title:location.title,
+    	map: map,
+    	position: location.position,
+    	animation: google.maps.Animation.DROP
+  	};
+
+  	location.marker = new google.maps.Marker(markerOptions);
+
+  	location.marker.addListener('click', function() {
+  		toggleBounce(this);
     });
-});
-
-//This function it untilized when a user clicks on the button on the view.
-//Based on advice given by Udayan on Udacity forum https://discussions.udacity.com/t/wrong-info-window-opens-on-list/189223/3
-
-self.selectLocation = function(location) {
-		console.log(location.marker)
-		marker = location.marker
-		toggleBounce(marker)
-};
-
-//Search Filter
-
-//Search filter implementation based on https://discussions.udacity.com/t/linking-the-ko-filter-to-the-markers-le-sigh/35771/2 and //http://codepen.io/prather-mcs/pen/KpjbNN?editors=1111
-
-//The search filter uses the "visible" knockout binding to hide the locations and markers based on userInput
-self.visibleLocations = ko.observableArray();
-
-//Creates the visibleLocations. All locations visible until user input
-self.allLocations.forEach(function(location) {
-	self.visibleLocations.push(location);
-});
-
-self.userInput = ko.observable('');//Knockout tracks user input
-
-//Compare userinput to location names
-self.filterMarkers = function() {
-	var searchInput = self.userInput().toLowerCase();
-	self.visibleLocations.removeAll();
-    self.allLocations.forEach(function(location) {
-      location.marker.setVisible(false);
-		    if (location.title.toLowerCase().indexOf(searchInput) !== -1) {
-			self.visibleLocations.push(location);
-		}
-});
-
-//Sets locations to visible
-
-self.visibleLocations().forEach(function(location) {
-      location.marker.setVisible(true);
-    });
-  };
-
-// saves a reference to the marker
-function Location(dataObj) {
-	this.title = dataObj.title;
-    this.position = dataObj.position;
-    this.marker = null;
-  };
-
-
-  // wikipedia API call
-  //Wiki API call based on Udacity AJAX NYT minicourse as part of FEND coursework
-
-  var apiCall = function(marker){
-	var url = 'http://en.wikipedia.org/w/api.php?action=opensearch&format=json&limit=1&search='+marker.title+'&callback=?'
-  $.ajax({
-    type: "GET",
-    url: url,
-    contentType: "application/json; charset=utf-8",
-    async: false,
-    dataType: "json",
-    success: function (data, textStatus, jqXHR) {
-      contentMaker(data,marker)
-    },
-
-    error: function (errorMessage) {
-      "Wikipedia not available at this time. Please try again Later."
-    }
 
   });
 
-}
-	//This function recives the API call data and formats it for the infowindow
-    function contentMaker(data,marker){
-      var infowindow = new google.maps.InfoWindow({
-      content: '<h6><a href ='+data[3]+'>'+data[1]+'</a></h6><p>'+data[2]+'</p>'
+  //This function it untilized when a user clicks on the button on the view.
+  //Based on advice given by Udayan on Udacity forum https://discussions.udacity.com/t/wrong-info-window-opens-on-list/189223/3
+
+  self.selectLocation = function(location) {
+  		marker = location.marker
+  		toggleBounce(marker)
+  };
+
+  //Search Filter
+
+  //Search filter implementation based on https://discussions.udacity.com/t/linking-the-ko-filter-to-the-markers-le-sigh/35771/2 and //http://codepen.io/prather-mcs/pen/KpjbNN?editors=1111
+
+  //The search filter uses the "visible" knockout binding to hide the locations and markers based on userInput
+  self.visibleLocations = ko.observableArray();
+
+  //Creates the visibleLocations. All locations visible until user input
+  self.allLocations.forEach(function(location) {
+  	self.visibleLocations.push(location);
+  });
+
+  self.userInput = ko.observable('');//Knockout tracks user input
+
+  //Compare userinput to location names
+  self.filterMarkers = function() {
+    var searchInput = self.userInput().toLowerCase();
+  	self.visibleLocations.removeAll();
+      self.allLocations.forEach(function(location) {
+        location.marker.setVisible(false);
+  		    if (location.title.toLowerCase().indexOf(searchInput) !== -1) {
+  			self.visibleLocations.push(location);
+  		}
+  });
+
+  //Sets locations to visible
+
+  self.visibleLocations().forEach(function(location) {
+        location.marker.setVisible(true);
       });
+  };
+
+  // saves a reference to the marker
+  function Location(dataObj) {
+  	this.title = dataObj.title;
+      this.position = dataObj.position;
+      this.marker = null;
+  };
+
+
+    // wikipedia API call
+    //Wiki API call based on Udacity AJAX NYT minicourse as part of FEND coursework
+
+  var apiCall = function(marker){
+    	var url = 'http://en.wikipedia.org/w/api.php?action=opensearch&format=json&limit=1&search='+marker.title+'&callback=?'
+      $.ajax({
+        type: "GET",
+        url: url,
+        contentType: "application/json; charset=utf-8",
+        async: false,
+        dataType: "json",
+        success: function (data, textStatus, jqXHR) {
+          contentMaker(data,marker)
+        },
+
+        error: function (errorMessage) {
+          "Wikipedia not available at this time. Please try again Later."
+      }
+    });
+  };
+
+  //This function recives the API call data and formats it for the infowindow
+
+  function contentMaker(data,marker){
+    var infowindow = new google.maps.InfoWindow({
+      content: '<h6><a href ='+data[3]+'>'+data[1]+'</a></h6><p>'+data[2]+'</p>'
+    });
       infowindow.open(map, marker);
-    }
+  };
 
   //toggleBounce causes the marker to bounce when the user clicks on the lst button or the marker.
-	var toggleBounce=function(marker) {//https://developers.google.com/maps/documentation/javascript/markers
-      apiCall(marker);
-      if (marker.getAnimation() !== null) {
-		marker.setAnimation(null);
-      } else {
-		marker.setAnimation(google.maps.Animation.BOUNCE);
-		setTimeout(function() {
-		marker.setAnimation(null);
-		}, 1000); //https://developer.mozilla.org/en-US/Add-ons/Code_snippets/Timers
-      }
-      };
 
+  var toggleBounce=function(marker) {//https://developers.google.com/maps/documentation/javascript/markers
+    apiCall(marker);
+    if (marker.getAnimation() !== null) {
+  	  marker.setAnimation(null);
+      } else {
+  	  marker.setAnimation(google.maps.Animation.BOUNCE);
+  	   setTimeout(function() {
+  	      marker.setAnimation(null);
+  	     }, 1000); //https://developer.mozilla.org/en-US/Add-ons/Code_snippets/Timers
+      }
   };
+
+};
 
 //initMap creates the map and starts knockout
 var initMap = function() {
     map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 6,
-    center: {lat: 38.3401967, lng: -81.6032057}
+      zoom: 6,
+      center: {lat: 38.3401967, lng: -81.6032057}
     });
 
     ko.applyBindings(new viewModel());

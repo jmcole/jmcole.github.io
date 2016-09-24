@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet'>
-	   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <script src="js/jquery-1.12.1.min.js"></script>
@@ -73,27 +72,27 @@
           </div>
      </nav>
   </head>
-  <body>
-    <div class="container">
-      <div class="row">
-    <div>
-    <h3>Search</h3>
-      <input class="form-control" type="text" data-bind="textInput: userInput, event: {keyup: filterMarkers}", placeholder= "Enter a location to follow in Daniel Boone's footsteps...">
-    </div>
-    <div class col-md-12>
-      <h3>Locations</h3>
-      <div data-bind="foreach: visibleLocations">
-		<button class="btn btn-default" data-bind ="html: title, click: $parent.selectLocation"></button>
-	  </div>
-    </div>
-    <div>
-    <hr class="hr-style">
-  </div>
-</div>
-    </div>
-    <div class id="map"></div>
-    <script src="js/map.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfc3S5SsQsx2mIhbcb3FpgJlqabPnI91Q&callback=initMap"
-        async defer></script>
-  </body>
+    <body>
+      <div class="container">
+        <div class="row">
+          <div>
+            <h3>Search</h3>
+              <input class="form-control" type="text" data-bind="textInput: userInput, event: {keyup: filterMarkers}", placeholder= "Enter a location to follow in Daniel Boone's footsteps...">
+          </div>
+          <div class col-md-12>
+            <h3>Locations</h3>
+              <div data-bind="foreach: visibleLocations">
+      		      <button class="btn btn-default" data-bind ="html: title, click: $parent.selectLocation"></button>
+      	    </div>
+          </div>
+          <div>
+            <hr class="hr-style">
+          </div>
+        </div>
+      </div>
+      <div class id="map"></div>
+      <script src="js/map.js"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfc3S5SsQsx2mIhbcb3FpgJlqabPnI91Q&callback=initMap"
+          async defer></script>
+    </body>
 </html>
