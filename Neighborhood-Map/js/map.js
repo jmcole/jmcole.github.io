@@ -1,6 +1,7 @@
-
+"use strict";
+var map;
+var infowindow;
 //Model
-
 // Layout of code based on Udacity Forum advice by Sarah https://discussions.udacity.com/t/any-guidance-on-coding-p5/3757/7
 
 // This is an array of locations and position parameters that will be passed to google maps and wikipedia API
@@ -10,58 +11,51 @@ var model = [{
     position: {
         lat: 40.2971703,
         lng: -75.7978535
-    },
-    map: map
+    }
 
 }, {
-    title: "Cumberland Gap",
+    title: 'Cumberland Gap',
     position: {
         lat: 36.6148102,
         lng: -83.6717293
     },
-    map: map
+
 }, {
     title: "Boone's Cave Park",
     position: {
         lat: 35.7984723,
         lng: -80.4695107
     },
-    map: map
 }, {
-    title: "Fort Boonesborough State Park",
+    title: 'Fort Boonesborough State Park',
     position: {
         lat: 37.8940053,
         lng: -84.2751551
     },
-    map: map
 }, {
-    title: "Daniel Boone Home",
+    title: 'Daniel Boone Home',
     position: {
         lat: 38.6511983,
         lng: -90.856381
     },
-    map: map
 }, {
-    title: "Battle of Blue Licks",
+    title: 'Battle of Blue Licks',
     position: {
         lat: 38.429235,
         lng: -83.9941716
     },
-    map: map
 }, {
-    title: "Chalahgawtha",
+    title: 'Chalahgawtha',
     position: {
         lat: 39.7303531,
         lng: -83.9464847
     },
-    map: map
 }, {
-    title: "Frankfort Cemetery",
+    title: 'Frankfort Cemetery',
     position: {
         lat: 38.1941827,
         lng: -84.8672227
     },
-    map: map
 }];
 
 
@@ -87,6 +81,11 @@ var viewModel = function() {
         };
 
         location.marker = new google.maps.Marker(markerOptions);
+        var marker =location.marker;
+
+        marker.infowindow = new google.maps.InfoWindow({
+            content: "Content"
+        });
 
         location.marker.addListener('click', function() {
             toggleBounce(this);
@@ -117,7 +116,7 @@ var viewModel = function() {
     self.userInput = ko.observable(''); //Knockout tracks user input
 
     //Compare userinput to location names
-    self.filterMarkers = function(location) {
+    self.filterMarkers = function(location,marker) {
         var searchInput = self.userInput().toLowerCase();
         self.visibleLocations.removeAll();
         self.allLocations.forEach(function(location) {
@@ -151,7 +150,7 @@ var viewModel = function() {
             type: "GET",
             url: url,
             contentType: "application/json; charset=utf-8",
-            async: false,
+            async: true,
             dataType: "json",
         }).done(function(data) {
             contentMaker(data,marker);
@@ -164,15 +163,13 @@ var viewModel = function() {
     //This function recives the API call data and formats it for the infowindow
 
     function contentMaker(data, marker) {
-        var infowindow = new google.maps.InfoWindow({
-            content: '<h6><a href =' + data[3] + '>' + data[1] + '</a></h6><p>' + data[2] + '</p>'
-        });
-        infowindow.open(map, marker);
+        var html = '<h6><a href =' + data[3] + '>' + data[1] + '</a></h6><p>' + data[2] + '</p>';
+        marker.infowindow.setContent(html);
+        marker.infowindow.open(map, marker,html);
     }
     //toggleBounce causes the marker to bounce when the user clicks on the lst button or the marker.
 
     var toggleBounce = function(marker) { //https://developers.google.com/maps/documentation/javascript/markers
-        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
         apiCall(marker);
         if (marker.getAnimation() !== null) {
             marker.setAnimation(null);
@@ -180,13 +177,9 @@ var viewModel = function() {
             marker.setAnimation(google.maps.Animation.BOUNCE);
             setTimeout(function() {
                 marker.setAnimation(null);
-            }, 1000); //https://developer.mozilla.org/en-US/Add-ons/Code_snippets/Timers
+            }, 1400); //https://developer.mozilla.org/en-US/Add-ons/Code_snippets/Timers
         }
     };
-
-    function googleError() {
-        window.alert("I'm sorry there has been an error with Google Maps.");
-    }
 };
 
 //initMap creates the map and starts knockout
@@ -201,3 +194,8 @@ var initMap = function() {
 
     ko.applyBindings(new viewModel());
 };
+
+//Alerts user when google maps will not load
+function googleError() {
+  window.alert("I'm sorry there has been an error with Google Maps.");
+}

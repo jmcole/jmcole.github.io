@@ -8,53 +8,7 @@
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script src="js/knockout-3.4.0.js"></script>
-    <style>
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
-        #panel {
-            position: absolute;
-            top: 10px;
-            left: 25%;
-            z-index: 5;
-            background-color: #fff;
-            padding: 5px;
-            border: 1px solid #999;
-            text-align: center;
-        }
-
-        #panel,
-        .panel {
-            font-family: 'Roboto', 'sans-serif';
-            line-height: 30px;
-            padding-left: 10px;
-        }
-
-        #panel select,
-        #panel input,
-        .panel select,
-        .panel input {
-            font-size: 15px;
-        }
-
-        #panel select,
-        .panel select {
-            width: 100%;
-        }
-
-        #panel i,
-        .panel i {
-            font-size: 12px;
-        }
-    </style>
 </head>
-
 <body>
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
@@ -96,8 +50,10 @@
         </div>
     </div>
     <div class id="map"></div>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="js/knockout-3.4.0.js"></script>
     <script src="js/map.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfc3S5SsQsx2mIhbcb3FpgJlqabPnI91Q&callback=initMap" onerror="myFunc()"async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfc3S5SsQsx2mIhbcb3FpgJlqabPnI91Q&callback=initMap" onerror="googleError()"async defer></script>
 </body>
 
 </html>
