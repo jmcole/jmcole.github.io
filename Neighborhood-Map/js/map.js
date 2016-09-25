@@ -1,9 +1,3 @@
-var toggleBounce;
-var selectLocation;
-var infowindow;
-var marker = [];
-var markers = [];
-var searchString;
 
 //Model
 
@@ -123,7 +117,7 @@ var viewModel = function() {
     self.userInput = ko.observable(''); //Knockout tracks user input
 
     //Compare userinput to location names
-    self.filterMarkers = function() {
+    self.filterMarkers = function(location) {
         var searchInput = self.userInput().toLowerCase();
         self.visibleLocations.removeAll();
         self.allLocations.forEach(function(location) {
@@ -145,7 +139,7 @@ var viewModel = function() {
         this.title = dataObj.title;
         this.position = dataObj.position;
         this.marker = null;
-    };
+    }
 
 
     // wikipedia API call
@@ -159,14 +153,12 @@ var viewModel = function() {
             contentType: "application/json; charset=utf-8",
             async: false,
             dataType: "json",
-            success: function(data, textStatus, jqXHR) {
-                contentMaker(data, marker);
-            },
+        }).done(function(data) {
+            contentMaker(data,marker);
 
-            error: function(errorMessage) {
-                "Wikipedia not available at this time. Please try again Later."
-            }
-        });
+        }).fail(function(jqXHR, textStatus) {
+            alert( "WikiPedia request failed");
+          });
     };
 
     //This function recives the API call data and formats it for the infowindow
@@ -176,11 +168,11 @@ var viewModel = function() {
             content: '<h6><a href =' + data[3] + '>' + data[1] + '</a></h6><p>' + data[2] + '</p>'
         });
         infowindow.open(map, marker);
-    };
-
+    }
     //toggleBounce causes the marker to bounce when the user clicks on the lst button or the marker.
 
     var toggleBounce = function(marker) { //https://developers.google.com/maps/documentation/javascript/markers
+        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
         apiCall(marker);
         if (marker.getAnimation() !== null) {
             marker.setAnimation(null);
@@ -192,6 +184,9 @@ var viewModel = function() {
         }
     };
 
+    function googleError() {
+        window.alert("I'm sorry there has been an error with Google Maps.");
+    }
 };
 
 //initMap creates the map and starts knockout
