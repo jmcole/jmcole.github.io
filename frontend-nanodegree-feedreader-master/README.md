@@ -9,7 +9,7 @@
 3. [Jasmine](http://jasmine.github.io/) test cases will run automatically and report can be found at bottom of page.
 4. Jasmine Spec file can be found at jmcole.github.io/frontend-nanodegree-feedreader-master/jasmine/Spec/feedreader.js
 
-or [Click Here](http://jmcole.githib.io/frontend-nanodegree-feedreader-master/index.html)
+or [Click Here](http://jmcole.githib.io/frontend-nanodegree-feedreader-master/index.html) to open index.html
 
 
 
