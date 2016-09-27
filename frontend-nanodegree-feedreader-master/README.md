@@ -2,7 +2,16 @@
 
 ##This project was completed using the [Jasmine](http://jasmine.github.io/) frame work to develop tests for JavaScript code.
 
-##To Run [Click Here](http://jmcole.githib.io/frontend-nanodegree-feedreader-master/index.html)
+##To Run
+
+1. Clone the repository at jmcole.github.io/Neighborhood-Map/
+2. Open Index.html with browser.
+3. [Jasmine](http://jasmine.github.io/) test cases will run automatically and report can be found at bottom of page.
+4. Jasmine Spec file can be found at jmcole.github.io/frontend-nanodegree-feedreader-master/jasmine/Spec/feedreader.js
+
+or [Click Here](http://jmcole.githib.io/frontend-nanodegree-feedreader-master/index.html)
+
+
 
 ## Resources used:
 

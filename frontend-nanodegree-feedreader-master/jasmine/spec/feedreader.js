@@ -63,11 +63,8 @@ $(function() {
     describe('Initial Entries', function() {
         //description - Tests to ensure that here is one.entry element within the.feed container
         // Resouces used -//https://discussions.udacity.com/t/step-13-help-initial-entries/14839/13
-
         beforeEach(function(done) {
-            setTimeout(function() {
-                loadFeed(0, done);
-            });
+            loadFeed(0, done);
         });
 
         it('ensure at completion of loadFeed there is one .entry element within the .feed container', function(done) {
