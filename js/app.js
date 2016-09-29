@@ -12,14 +12,11 @@ http://diveinto.html5doctor.com/canvas.html#c
 width 505
 height 606
 *******************************************/
-
-
 /**********************************
 Using Math.random to set random speeds for Enemy class.
 http://stackoverflow.com/questions/12885110/javascript-math-random
 https://discussions.udacity.com/t/bugs-speed-in-code/157675
 **********************************/
-
 // Enemies our player must avoid
 var Enemy = function(x, y) {
     // Variables applied to each of our instances go here,
@@ -29,11 +26,11 @@ var Enemy = function(x, y) {
     // a helper we've provided to easily load images
     "use strict";
     this.sprite = 'images/enemy-bug.png';
-    this.x =x;
-    this.y =y;
+    this.x = x;
+    this.y = y;
     this.width = 80;
     this.height = 50;
-    this.speed = Math.floor(Math.random() *(400 -200 + 1)) + 200;
+    this.speed = Math.floor(Math.random() * (400 - 200 + 1)) + 200;
 };
 
 // Update the enemy's position, required method for game
@@ -47,7 +44,7 @@ Enemy.prototype.update = function(dt) {
     //Reset Enemy position https://discussions.udacity.com/t/enemy-not-regenerating-once-it-reaches-the-canvas-width/167915
     if (this.x > 505) {
         this.x = -101;
-        this.speed = Math.floor(Math.random() *(500 -200 + 100)) + 200;
+        this.speed = Math.floor(Math.random() * (500 - 200 + 100)) + 200;
     }
 };
 
@@ -60,12 +57,12 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-var Player = function(){
+var Player = function() {
     "use strict";
     this.sprite = 'images/char-boy.png';
-    this.width = 66;//height and width definition needed for collision dtection
+    this.width = 66; //height and width definition needed for collision dtection
     this.height = 95;
-    this.reset();//Sets player intitial position
+    this.reset(); //Sets player intitial position
 };
 /***************************************
 Update module multiplies player movement by dt to keep speed consistent for all computers.
@@ -89,7 +86,7 @@ off the screen and to reset the game if the player wins by reaching the water.
 //https://discussions.udacity.com/t/how-do-i-make-the-handleinput-listen-the-keys/162024
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch
 ******************************************************/
-Player.prototype.handleInput = function(allowedKeys){
+Player.prototype.handleInput = function(allowedKeys) {
     "use strict";
     if (allowedKeys == 'up') {
         this.y -= 90;
@@ -127,10 +124,10 @@ Player.prototype.handleInput = function(allowedKeys){
 Resets player to start position. Used if player reaches the water or if
 a collision occurs.
 *********************************/
-Player.prototype.reset=function(){
-        "use strict";
-        this.x = 200;
-        this.y = 400;
+Player.prototype.reset = function() {
+    "use strict";
+    this.x = 200;
+    this.y = 400;
 };
 
 // Now instantiate your objects.
@@ -156,15 +153,15 @@ between the two objects, a collision exists and the player is reset.
 https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
 https://discussions.udacity.com/t/collision-detection-loop/39113/2
 **************************************/
-Player.prototype.collision=function(){
-        "use strict";
-        for (var e = 0; e < allEnemies.length; e++) {
-            if (allEnemies[e].x < player.x + player.width
-                && allEnemies[e].x + allEnemies[e].width > player.x
-                && allEnemies[e].y < player.y + player.height
-                && allEnemies[e].y + allEnemies[e].height > player.y)
+Player.prototype.collision = function() {
+    "use strict";
+    for (var e = 0; e < allEnemies.length; e++) {
+        if (allEnemies[e].x < player.x + player.width &&
+            allEnemies[e].x + allEnemies[e].width > player.x &&
+            allEnemies[e].y < player.y + player.height &&
+            allEnemies[e].y + allEnemies[e].height > player.y)
             player.reset();
-  }
+    }
 
 };
 
