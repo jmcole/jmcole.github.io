@@ -7,6 +7,25 @@
 
 */
 
+/* Ocean Carousel */
+#oceanCarousel {
+  position: relative;
+  width: 610px;
+}
+
+#oceanCarousel .item  a {
+  float: left;
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  border: 1px solid #fff;
+  text-decoration: none;
+}
+
+.carousel-inner img {
+  margin: auto;
+}
+
 /* Links */
 a,
 a:focus,
@@ -32,7 +51,7 @@ a:hover {
 html,
 body {
 /*css for full size background image*/
-  background: url(http://jmcole.github.io/FS/img/waterfall.jpg) no-repeat center center fixed;
+  background: url(http://jmcole.github.io/FS/img/waterfall-min.jpg) no-repeat center center fixed; /*http://stackoverflow.com/questions/492809/when-to-use-img-vs-css-background-image*/
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
