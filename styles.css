@@ -1,0 +1,25 @@
+.bg-image-intro{
+    background-image: url(../red_book2.png);
+    background-repeat: no-repeat;
+    background-size: 90% 120%;
+}
+
+.bg-image-wells{
+    background-image: url(../GettyImages-2119740.0.0.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg-image-butler{
+    background-image: url(../butler.jfif);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.white-text{
+    color: whitesmoke;
+}
+body{
+    font-family: Lato;
+}
