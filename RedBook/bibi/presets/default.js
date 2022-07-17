@@ -103,7 +103,7 @@ Bibi.preset({
 //-- Extra
 //----------------------------------------------------------------------------------------------------------------------------------------------
 
-"website-name-in-title"    : "", // "" or name of your website replaces string "Bibi" in <title>.
+"website-name-in-title"    : "A Red Record", // "" or name of your website replaces string "Bibi" in <title>.
 "website-name-in-menu"     : "", // "" or name of your website appears in setting-menu as a link. (Requires "website-href")
 "website-href"             : "", // "" or URL of your website to be used for the link in setting-menu. (Requires "website-name-in-menu")
 "remove-bibi-website-link" : false, // true or false (if true, the link to Bibi Website is not to be added in setting-menu)
@@ -140,7 +140,7 @@ Bibi.preset({
 // It makes Bibi to be able to open EPUBs including useful scripts.
 // But on the other hand, it may also allow XSS of malicious EPUB in some cases.
 
-/* !!!! BE CAREFUL !!!! */ "trustworthy-origins" : [], // origins you trust other than where this Bibi is installed. (blank is recommended).
+/* !!!! BE CAREFUL !!!! */ "trustworthy-origins" : ["https://jmcole.github.io/"], // origins you trust other than where this Bibi is installed. (blank is recommended).
 // If you add origins to it, Bibi is made to open not only EPUBs in the same origin as Bibi itself is installed but also EPUBs in remote origins.
 // It is useful for some cases like that you want to set directory on the other storaging server as "bookshelf".
 // But note that not to set an origin where someone else also can publish files.
